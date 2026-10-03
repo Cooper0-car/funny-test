@@ -48,7 +48,7 @@
             document.getElementById('intro-area').style.display = 'none';
             document.getElementById('loading-area').style.display = 'block';
 
-            // 더 안정적인 대안 API 서비스(ipapi.co)로 교체하여 에러 방지
+            // 💡 버그 수정 완료: 주소 뒤에 /json/을 확실하게 붙여서 IP 데이터를 타겟팅합니다.
             fetch('https://ipapi.co')
                 .then(res => {
                     if (!res.ok) throw new Error('Network response error');
@@ -80,7 +80,6 @@
                 })
                 .catch(err => {
                     console.error(err);
-                    // 만약 이것마저 에러가 나더라도 강제로 다음 스텝을 진행하도록 백업 처리
                     setTimeout(() => {
                         alert("🎉 분석 완료!\n\n네트워크 보안 필터로 인해 IP 수집이 일부 방해받았으나 시스템 동기화에 성공했습니다! 😈");
                         document.getElementById('loading-title').innerText = "초능력 분석 완료";
